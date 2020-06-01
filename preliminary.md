@@ -13,7 +13,7 @@ VADER~\cite{hutto2014vader}がある．VADERはルールベースの感情分析
 軽量で解釈が容易であるという利点がある．HuttoらはSNSを主眼としてVADERを提案している，
 ここで，VADERがソフトウェア開発者とは異なるコミュニティで
 作成されているため，その予測精度の信頼性には疑問が残る．
-Islamら~\cite{islam2017MSR}は，開発者以外のコミュニティで
+Islamら~\cite{SentiStrength-SE}は，開発者以外のコミュニティで
 検証されたSentiStrengthというルールベースの手法を
 そのままソフトウェア工学コミュニティに適用する場合に弱点が存在することを
 指摘している．特に，コミュニティが異なることによる使用語彙の
@@ -35,15 +35,14 @@ Group-2で提供している感情値が，Group-1のデータセット評価時
 指摘している．そして，今回我々が分析対象としてるデータと同じ
 課題のコメントを利用している．
 これらの点から，Group-2のデータを利用した．
-SEドメインにおける感情分析ツールとして，Calefatoら~\cite{calefato2018EMSE}
+SEドメインにおける感情分析ツールとして，Calefatoら~\cite{Senti4SD}
 が提案しているSenti4SDを採用した．
 Senti4SDは，スタックオーバーフローの質疑データを元にして，
 用語，キーワード，そして，文章の意味を考慮した特徴を生成し，
 それを利用して分類を行う手法である．
 評価実験より，他のソフトウェアドメイン分野における
 感情分析ツールであるSentiStrength-SEよりも精度が良くなることが確認されている．
-また，ドキュメントが充実した実装が公開%
-\footnote{\url{https://github.com/collab-uniba/Senti4SD}}
+また，ドキュメントが充実した実装が公開~\cite{[Senti4SD-implementation]}
 されており，再利用が容易である．
 
 
@@ -94,17 +93,47 @@ SNSドメインで提案された手法ではなく，ソフトウェアドメ�
 ## ソフトウェアドメインにおける感情分析手法の比較
 
 ソフトウェアドメインにおいて有名な感情分析手法は以下の4つが挙げられる．
-- Senti4SD
-- SentiStrength-SE
-- SentiSE
-- SentiCR
+- Senti4SD [Senti4SD]
+- SentiStrength-SE [SentiStrength-SE]
+- SentiSE [SentiSE vs SentiCR]
+- SentiCR [SentiCR]
 
 
 この中で，SentiStrength-SEはベースラインとして使用されており，
 予測精度は他の手法より劣る．
 SentiSEとSentiCRに関しては実装が公開されているが，ドキュメントが
-乏しく使用方法を理解することが難しい．
-また，それぞれの論文でSentiStrength-SEと比較をしているが，
-予測精度が極端に改善しているわけではなかった．
+乏しく使用方法を理解することが難しい~\cite{[SentiCR-implementation], [SentiSE vs SentiCR]}．
+SentiSEはSentiCR及びSentiStrength-SEより予測精度が良い\cite{SentiSE vs SentiCR}．
+しかし，予測精度を極端に改善しているわけではなかった．
+Senti4SDもSentiStrength-SEと比較されているが，同程度の改善
+度合いである\cite{Senti4SD}．
 以上より，ソフトウェアドメインで提案されている
 感情分析手法の中で，Senti4SDを我々の研究で使用した．
+
+
+## 参考文献
+
+[SentiCR]
+Ahmed, T., Bosu, A., Iqbal, A. and Rahimi, S.: SentiCR: A Customized Sentiment Analysis Tool for Code Review Interactions, In Proc. of ASE (2017)
+
+[SentiSE vs SentiCR]
+amiangshu/SentiSE, "SentiSE", GitHub (online), available from <https://github.com/amiangshu/SentiSE>, (last accessed 2020-6-1)
+
+[Senti4SD]
+Calefato, F., Lanubile, F., Maiorano, F. and Novielli, N.: Sentiment polarity detection for software development, Empir. Soft. Eng., Vol. 23, No. 3, pp. 1352–1382 (2018).
+
+[Senti4SD-implementation]
+collab-uniba/Senti4SD, "Senti4SD", GitHub (online), avilable from <https://github.com/collab-uniba/Senti4SD>, (last accessed 2020-6-1)
+
+[hutto2014vader]
+Hutto, C. J. and Gilbert, E.: Vader: A parsimonious rulebased model for sentiment analysis of social media text, In Proc. of ICWSM (2014).
+
+
+[SentiStrength-SE]
+Islam, MDR. and Zibran, MF.: Leveraging automated sentiment analysis in software engineering, In Proc. of MSR (2017)
+
+[ortu2016MSR]
+Ortu, M., Murgia, A., Destefanis, G., Tourani, P., Tonelli, R., Marchesi, M. and Adams, B.: The emotional side of software developers in JIRA, In Proc. of MSR (2016).
+  
+[SentiCR-implementation]
+senticr/SentiCR, "SentiCR", GitHub (online), available from <https://github.com/senticr/SentiCR/>, (last accessed 2020-6-1)
