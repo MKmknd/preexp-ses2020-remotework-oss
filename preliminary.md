@@ -8,12 +8,12 @@
 最終的な感情値を算出する．モデルベースの手法では，機械学習のモデルなどを
 感情値が与えられたデータセットを用いて学習し利用する方法である．
 
-有名な感情分析手法には，NLTKにて実装されているHuttoら~\cite{hutto2014vader}が提案した
-VADER~\cite{hutto2014vader}がある．VADERはルールベースの感情分析手法であり，
+有名な感情分析手法には，NLTKにて実装されているHuttoら[5]が提案した
+VADER[5]がある．VADERはルールベースの感情分析手法であり，
 軽量で解釈が容易であるという利点がある．HuttoらはSNSを主眼としてVADERを提案している，
 ここで，VADERがソフトウェア開発者とは異なるコミュニティで
 作成されているため，その予測精度の信頼性には疑問が残る．
-Islamら~\cite{SentiStrength-SE}は，開発者以外のコミュニティで
+Islamら[6]は，開発者以外のコミュニティで
 検証されたSentiStrengthというルールベースの手法を
 そのままソフトウェア工学コミュニティに適用する場合に弱点が存在することを
 指摘している．特に，コミュニティが異なることによる使用語彙の
@@ -27,7 +27,7 @@ Islamら~\cite{SentiStrength-SE}は，開発者以外のコミュニティで
 使用するべきかを，感情分析の予測結果で比較し検討した．
 予測結果を比較検討するためのテストデータとして，
 Ortuらが提供している手作業で感情値を付与した
-課題管理の課題のコメントのデータセット~\cite{ortu2016MSR}を
+課題管理の課題のコメントのデータセット[7]を
 利用した，このデータセットは，
 Group-1から3までデータが存在するが，Ortuらは，
 Group-2で提供している感情値が，Group-1のデータセット評価時に，
@@ -35,20 +35,21 @@ Group-2で提供している感情値が，Group-1のデータセット評価時
 指摘している．そして，今回我々が分析対象としてるデータと同じ
 課題のコメントを利用している．
 これらの点から，Group-2のデータを利用した．
-SEドメインにおける感情分析ツールとして，Calefatoら~\cite{Senti4SD}
+SEドメインにおける感情分析ツールとして，Calefatoら[3]
 が提案しているSenti4SDを採用した．
 Senti4SDは，スタックオーバーフローの質疑データを元にして，
 用語，キーワード，そして，文章の意味を考慮した特徴を生成し，
 それを利用して分類を行う手法である．
 評価実験より，他のソフトウェアドメイン分野における
-感情分析ツールであるSentiStrength-SEよりも精度が良くなることが確認されている．
-また，ドキュメントが充実した実装が公開~\cite{[Senti4SD-implementation]}
+感情分析ツールであるSentiStrength-SE[6]よりも，
+感情の推定精度が良くなることが確認されている．
+また，ドキュメントが充実した実装が公開[4]
 されており，再利用が容易である．
 
 
 以下が，VADERとSenti4SDの比較結果である．肯定，否定，
 そしてニュートラルな感情値をどれだけ正しく推定できたかを
-precision，recallとしてF1で測定している．
+precision，recall及びF1で測定している．
 
 ```VADERの結果
 VADERの結果
@@ -93,47 +94,47 @@ SNSドメインで提案された手法ではなく，ソフトウェアドメ�
 ## ソフトウェアドメインにおける感情分析手法の比較
 
 ソフトウェアドメインにおいて有名な感情分析手法は以下の4つが挙げられる．
-- Senti4SD [Senti4SD]
-- SentiStrength-SE [SentiStrength-SE]
-- SentiSE [SentiSE vs SentiCR]
-- SentiCR [SentiCR]
+- Senti4SD [3]
+- SentiStrength-SE [6]
+- SentiSE [2]
+- SentiCR [1]
 
 
 この中で，SentiStrength-SEはベースラインとして使用されており，
 予測精度は他の手法より劣る．
 SentiSEとSentiCRに関しては実装が公開されているが，ドキュメントが
-乏しく使用方法を理解することが難しい~\cite{[SentiCR-implementation], [SentiSE vs SentiCR]}．
-SentiSEはSentiCR及びSentiStrength-SEより予測精度が良い\cite{SentiSE vs SentiCR}．
+乏しく使用方法を理解することが難しい[2,8]．
+SentiSEはSentiCR及びSentiStrength-SEより予測精度が良い[2]．
 しかし，予測精度を極端に改善しているわけではなかった．
 Senti4SDもSentiStrength-SEと比較されているが，同程度の改善
-度合いである\cite{Senti4SD}．
+度合いである[3]．
 以上より，ソフトウェアドメインで提案されている
-感情分析手法の中で，Senti4SDを我々の研究で使用した．
+感情分析手法の中で，再利用が用意なSenti4SDを我々の研究で使用した．
 
 
 ## 参考文献
 
-[SentiCR]
+[1]
 Ahmed, T., Bosu, A., Iqbal, A. and Rahimi, S.: SentiCR: A Customized Sentiment Analysis Tool for Code Review Interactions, In Proc. of ASE (2017)
 
-[SentiSE vs SentiCR]
+[2] 
 amiangshu/SentiSE, "SentiSE", GitHub (online), available from <https://github.com/amiangshu/SentiSE>, (last accessed 2020-6-1)
 
-[Senti4SD]
+[3] 
 Calefato, F., Lanubile, F., Maiorano, F. and Novielli, N.: Sentiment polarity detection for software development, Empir. Soft. Eng., Vol. 23, No. 3, pp. 1352–1382 (2018).
 
-[Senti4SD-implementation]
+[4] 
 collab-uniba/Senti4SD, "Senti4SD", GitHub (online), avilable from <https://github.com/collab-uniba/Senti4SD>, (last accessed 2020-6-1)
 
-[hutto2014vader]
+[5] 
 Hutto, C. J. and Gilbert, E.: Vader: A parsimonious rulebased model for sentiment analysis of social media text, In Proc. of ICWSM (2014).
 
 
-[SentiStrength-SE]
+[6] 
 Islam, MDR. and Zibran, MF.: Leveraging automated sentiment analysis in software engineering, In Proc. of MSR (2017)
 
-[ortu2016MSR]
+[7] 
 Ortu, M., Murgia, A., Destefanis, G., Tourani, P., Tonelli, R., Marchesi, M. and Adams, B.: The emotional side of software developers in JIRA, In Proc. of MSR (2016).
   
-[SentiCR-implementation]
+[8]
 senticr/SentiCR, "SentiCR", GitHub (online), available from <https://github.com/senticr/SentiCR/>, (last accessed 2020-6-1)
